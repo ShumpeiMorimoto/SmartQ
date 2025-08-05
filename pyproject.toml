@@ -2,7 +2,7 @@
 name = "SmartQ"
 version = "0.1.0"
 description = "Smart quiz bot platform"
-author = [
+authors = [
     {name = "Shumpei Morimoto"}
 ]
 readme = "README.md"
