@@ -1,0 +1,10 @@
+{
+  // Specifies the default Python interpreter for the project.
+  // Ensure the virtual environment is set up correctly.
+  // Specifies the default Python interpreter for the workspace.
+  // Dynamically resolves the path to the virtual environment's Python executable.
+  "python.defaultInterpreterPath": "${workspaceFolder}/.venv/Scripts/python.exe",
+
+  // Fallback to system Python if the virtual environment is not found.
+  "python.defaultInterpreterPathFallback": "python"
+}
