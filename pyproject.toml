@@ -1,0 +1,22 @@
+[project]
+name = "SmartQ"
+version = "0.1.0"
+description = "Smart quiz bot platform"
+author = [
+    {name = "Shumpei Morimoto"}
+]
+readme = "README.md"
+require-python = ">=3.12"
+
+dependencies = [
+    "typer",
+]
+
+[project.optional-dependencies]
+dev = [
+    "ruff==0.12.2",
+    "ty==0.0.1a13"
+]
+
+[tool.ruff]
+line-length = 100
