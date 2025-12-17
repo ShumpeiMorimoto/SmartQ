@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>ChatGPTクイズ</title>
+</head>
+<body>
+    <h1>ChatGPT自動クイズ</h1>
+    <div id="quiz"></div>
+    <div id="result"></div>
+
+    <script>
+    let currentQuestion = "";
+    let currentChoices = [];
+
+    async function loadQuiz() {
+        document.getElementById("result").innerText = "";
+        document.getElementById("quiz").innerHTML = "<p>読み込み中...</p>";
+        const res = await fetch("/quiz");
+        const quiz = await res.json();
+
+        currentQuestion = quiz.question;
+        currentChoices = quiz.choices;
+
+        document.getElementById("quiz").innerHTML = `
+            <p>${quiz.question}</p>
+            ${quiz.choices.map(choice => 
+                `<button onclick="sendAnswer('${choice}')">${choice}</button>`
+            ).join("")}
+        `;
+    }
+
+    async function sendAnswer(answer) {
+        const res = await fetch("/answer", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ answer })
+        });
+        const data = await res.json();
+        document.getElementById("result").innerText = data.result;
+
+        // 2秒後に次のクイズを読み込む
+        setTimeout(() => {
+            loadQuiz();
+        }, 2000);
+    }
+
+    loadQuiz();
+</script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SmartQ Lobby</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="top.css">
+</head>
+<body>
+  <header>
+    SmartQ Lobby
+  </header>
+  <main>
+    <h2>Choose a Quiz or Game</h2>
+    <div class="games-grid" id="games-grid">
+      <!-- Cards will be injected here -->
+    </div>
+  </main>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const games = [
+        {
+          title: "General Knowledge Quiz",
+          desc: "Test your knowledge against others in real time.",
+          action: () => alert("General Knowledge Quiz coming soon!")
+        },
+        {
+          title: "Math Challenge",
+          desc: "Solve math problems faster than your opponents.",
+          action: () => alert("Math Challenge coming soon!")
+        },
+        {
+          title: "Memory Match",
+          desc: "Find matching pairs in this classic memory game.",
+          action: () => alert("Memory Match coming soon!")
+        },
+        {
+          title: "Word Scramble",
+          desc: "Unscramble the words before time runs out.",
+          action: () => alert("Word Scramble coming soon!")
+        }
+      ];
+
+      const grid = document.getElementById('games-grid');
+      games.forEach(game => {
+        const card = document.createElement('div');
+        card.className = 'game-card';
+        card.innerHTML = `
+          <div class="game-title">${game.title}</div>
+          <div class="game-desc">${game.desc}</div>
+          <button class="btn">Play</button>
+        `;
+        card.querySelector('.btn').onclick = game.action;
+        grid.appendChild(card);
+      });
+    });
+  </script>
+</body>
+</html>
